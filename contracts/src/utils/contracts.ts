@@ -1,5 +1,5 @@
 import { Addressable, BaseContract } from "ethers";
-import { BasePlugin, RecoveryWithDelayPlugin, RelayPlugin, TestSafeProtocolRegistryUnrestricted, WhitelistPlugin } from "../../typechain-types";
+import { BasePlugin, RecoveryWithDelayPlugin, RelayPlugin, TestSafeProtocolRegistryUnrestricted, WhitelistPlugin, SessionPlugin } from "../../typechain-types";
 import { HardhatRuntimeEnvironment } from "hardhat/types";
 import { getProtocolManagerAddress, getProtocolRegistryAddress } from "./protocol";
 
@@ -15,6 +15,7 @@ export const getSingleton = async <T extends BaseContract>(hre: HardhatRuntimeEn
 
 export const getPlugin = (hre: HardhatRuntimeEnvironment, address: string) => getInstance<BasePlugin>(hre, "BasePlugin", address);
 export const getRelayPlugin = (hre: HardhatRuntimeEnvironment) => getSingleton<RelayPlugin>(hre, "RelayPlugin");
+export const getSessionPlugin = (hre: HardhatRuntimeEnvironment) => getSingleton<SessionPlugin>(hre, "SessionPlugin");
 export const getRegistry = async (hre: HardhatRuntimeEnvironment) => getInstance<TestSafeProtocolRegistryUnrestricted>(hre, "TestSafeProtocolRegistryUnrestricted", await getProtocolRegistryAddress(hre));
 export const getWhiteListPlugin = async (hre: HardhatRuntimeEnvironment) => getSingleton<WhitelistPlugin>(hre, "WhitelistPlugin");
 export const getRecoveryWithDelayPlugin= async(hre: HardhatRuntimeEnvironment) => getSingleton<RecoveryWithDelayPlugin>(hre, "RecoveryWithDelayPlugin");

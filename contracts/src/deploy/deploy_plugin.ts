@@ -20,7 +20,12 @@ const deploy: DeployFunction = async function (hre: HardhatRuntimeEnvironment) {
         log: true,
         deterministicDeployment: true,
     });
-
+    await deploy("SessionPlugin", {
+        from: deployer,
+        args: [],
+        log: true,
+        deterministicDeployment: true,
+    });
     await deploy("WhitelistPlugin", {
         from: deployer,
         args: [],
