@@ -9,7 +9,7 @@ import Logo from '../assets/Logo.png';
 import { ConnectButton } from '@rainbow-me/rainbowkit';
 
 
-const pages = ['SendTransaction'];
+const pages = ['Sessions', 'Transactions','SendTransaction'];
 
 function MainBar() {
   const navigate = useNavigate();
@@ -29,6 +29,12 @@ function MainBar() {
   const handleCloseNavMenu = (key: string) => {
     if(key == "SendTransaction"){
       navigate("/sub-wallet/SendTransaction");
+    }
+    else if(key == "Transactions"){
+      navigate("/sub-wallet/Transactions");
+    }
+    else if(key == "Sessions"){
+      navigate("/sub-wallet/Sessions");
     }
   };
 

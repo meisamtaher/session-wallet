@@ -7,16 +7,16 @@ import { useAccount, useNetwork } from 'wagmi';
 import { log } from 'console';
 
 // import {getManager} from '../logic/protocol';
-function SendTransactions() {
+function Transactions() {
   const account = useAccount();
   const network = useNetwork();
   console.log("account: ", account);
   
   return (
     <Stack direction={'column'} padding = {5} alignItems={'center'} justifyContent={'center'} spacing={5}>
-        <Typography> Send Transaction through main wallet </Typography>
+        <Typography> List of all transactions </Typography>
     </Stack>
   );
 }
   
-export default SendTransactions;
+export default Transactions;
