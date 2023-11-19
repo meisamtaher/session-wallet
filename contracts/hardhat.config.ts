@@ -72,6 +72,30 @@ const config: HardhatUserConfig = {
       ...sharedNetworkConfig,
       url: `https://goerli.infura.io/v3/${INFURA_KEY}`,
     },
+    polygon_zkevmTest: {
+      ...sharedNetworkConfig,
+      url: `https://rpc.public.zkevm-test.net`,
+    },
+    arbitrum_goerli: {
+      ...sharedNetworkConfig,
+      url: `https://arbitrum-goerli.publicnode.com`,
+    },
+    scroll_sepolia: {
+      ...sharedNetworkConfig,
+      url: `https://rpc.ankr.com/scroll_sepolia_testnet`,
+    },
+    linea_test:{
+      ...sharedNetworkConfig,
+      url: `https://rpc.goerli.linea.build`,
+    },
+    mantle_testnet:{
+      ...sharedNetworkConfig,
+      url: `https://rpc.testnet.mantle.xyz`,
+    },
+    base_sepolia:{
+      ...sharedNetworkConfig,
+      url: `https://sepolia.base.org`,
+    },
     mumbai: {
       ...sharedNetworkConfig,
       url: `https://polygon-mumbai.infura.io/v3/${INFURA_KEY}`,
