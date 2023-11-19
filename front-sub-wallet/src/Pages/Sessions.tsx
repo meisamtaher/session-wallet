@@ -74,9 +74,9 @@ function Sessions() {
   return (
     <form onSubmit={handleSubmit}>
     <Container maxWidth="lg" sx={{ padding:5}} >
-      <Card sx = {{background: '#F6F3FC',minWidth:100, height:100}}>
+      <Card sx = {{background: '#F6F3FC',minWidth:100, height:80}}>
         <Stack padding={5} direction={'column'} spacing={3}>
-          <Typography>Adding new sessions</Typography>
+          <Typography>Adding new session</Typography>
         </Stack>
       </Card>
       <Stack padding={5} direction={'column'} spacing={3}>
