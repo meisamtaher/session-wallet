@@ -9,32 +9,53 @@ import {SafeTransaction, SafeRootAccess, SafeProtocolAction} from "@safe-global/
 
 
 contract Session {
-    address public target;
     // safe account address => sub-wallet account address => Session;
     mapping (address=>mapping(address => Permission)) public sessions;
+
     struct Permission{
         bool active;
-        uint256 activeUntilBlock;
-        bytes4 functionSignature;
-        address destinationContract;
         SessionType sessiontType;
+        uint256 activeUntilBlock;
+        mapping (address => bool) destinationContracts;
+        mapping (address => mapping(bytes4 =>bool) ) destinationFunnctions;
     }
     enum SessionType{
         Normal,
-        Function,
         Contract,
         ContractFunction
     }
-    event AddSession(address indexed ,address indexed delegatee, uint256 activeUntilBlock, bytes4 functionSignature, address destinationContract);
+   
     // event TransactionExecuted(address indexed accountAddress, uint256 value, address );
-    function addSession(address _safeWallet,address _delegatee, SessionType _sessionType, uint256 _duration,address _destinationContract, bytes4 _functionSignature) public{
+    function addSession(address _safeWallet,address _delegatee, SessionType _sessionType, uint256 _duration,address[] calldata _destinationContracts, bytes4[] calldata _functionSignatures) public{
         require(msg.sender== _safeWallet,"Only SCW");
-        sessions[_safeWallet][_delegatee] = Permission(true, block.timestamp + _duration, _functionSignature, _destinationContract, _sessionType);
+        /// later we should check if _safeWallet exist on this address 
+        sessions[_safeWallet][_delegatee].active = true;
+        sessions[_safeWallet][_delegatee].activeUntilBlock = block.timestamp + _duration;
+        if(_sessionType == SessionType.Contract){
+            for(uint i =0; i< _destinationContracts.length; i++){
+                sessions[_safeWallet][_delegatee].destinationContracts[_destinationContracts[i]] = true;
+            }
+        }
+        else if(_sessionType == SessionType.ContractFunction){
+            for(uint i =0; i< _destinationContracts.length; i++){
+                sessions[_safeWallet][_delegatee].destinationFunnctions[_destinationContracts[i]][_functionSignatures[i]] = true;
+            }
+        }
+        emit AddSession(_safeWallet, _delegatee, block.timestamp + _duration);
+    }
+    function revokeSession(address _safeWallet, address _delegatee) public{
+        require(msg.sender == _safeWallet, "Only SCW");
+        require(sessions[_safeWallet][_delegatee].active,"No session available");
+        sessions[_safeWallet][_delegatee].active = false;
     }
     function executeTransactionFromPlugin(ISafeProtocolManager _manager,ISafe _safeWallet, SafeTransaction calldata safeTx) public {
-        // require(sessions[msg.sender],"No sessions")
+        require(sessions[address(_safeWallet)][msg.sender].active,"No session");  
+        require(sessions[address(_safeWallet)][msg.sender].activeUntilBlock > block.timestamp ,"Session Expired");
+        //////// check contracts and function signatures
+        require(sessions[address(_safeWallet)][msg.sender].sessiontType != SessionType.Contract, "Permission denied to this contract");
+        require(sessions[address(_safeWallet)][msg.sender].sessiontType != SessionType.ContractFunction, "Permission denied to this function");
         _manager.executeTransaction(_safeWallet, safeTx);
-        // require(GnosisSafe(target).execTransactionFromModule(_to, _value, _data, _operation),"Action was not Executed");
         // emit TransactionExecuted(msg.sender, _operation, to, )
     }
+    event AddSession(address indexed delegator,address indexed delegatee, uint256 activeUntilBlock);
 }
