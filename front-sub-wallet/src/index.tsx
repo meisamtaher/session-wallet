@@ -11,7 +11,7 @@ import {
   getDefaultWallets,
   RainbowKitProvider,
 } from '@rainbow-me/rainbowkit';
-import { configureChains, createConfig, WagmiConfig } from 'wagmi';
+import { configureChains, createConfig, sepolia, WagmiConfig } from 'wagmi';
 import {
   mainnet,
   polygon,
@@ -20,11 +20,17 @@ import {
   base,
   zora,
   goerli,
+  scrollSepolia,
+  arbitrumGoerli,
+  polygonZkEvmTestnet,
+  mantleTestnet,
+  lineaTestnet,
+  baseGoerli,
 } from 'wagmi/chains';
 import { alchemyProvider } from 'wagmi/providers/alchemy';
 import { publicProvider } from 'wagmi/providers/public';
 const { chains, publicClient } = configureChains(
-  [goerli],
+  [goerli, sepolia, scrollSepolia, arbitrumGoerli, polygonZkEvmTestnet, mantleTestnet, lineaTestnet, baseGoerli],
   [
     publicProvider()
   ]
