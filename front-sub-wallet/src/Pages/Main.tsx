@@ -8,14 +8,11 @@ import SendTransaction from './SendTransaction';
 const pages = ['SendTransaction'];
 
 function Main() {
-    const [network, setNetwork] = useState<undefined>();
-
   return (
     <BrowserRouter>
-      <MainBar network={network} />
+      <MainBar />
       <Routes>
-
-          <Route path = "/sub-wallet/SendTransaction" element={<SendTransaction network = {network}/>} />
+          <Route path = "/sub-wallet/SendTransaction" element={<SendTransaction />} />
       </Routes>
     </BrowserRouter>
 

@@ -6,15 +6,12 @@ import Toolbar from '@mui/material/Toolbar';
 import Container from '@mui/material/Container';
 import Box from '@mui/material/Box';
 import Logo from '../assets/Logo.png';
-import ConnectWallet from './ConnectWallet';
+import { ConnectButton } from '@rainbow-me/rainbowkit';
 
-type Props = {
-  network: undefined;
-};
 
 const pages = ['SendTransaction'];
 
-function MainBar({ network }: Props) {
+function MainBar() {
   const navigate = useNavigate();
   const [address, setAddress] = useState();
 
@@ -36,7 +33,6 @@ function MainBar({ network }: Props) {
   };
 
   useEffect(() => {
- 
   }, []);
   
   return (
@@ -60,7 +56,7 @@ function MainBar({ network }: Props) {
              {address && <Button variant="outlined" sx={{ color: 'white', my: 1, mx: 1.5 }} className="logout" onClick={onDisconnect}>
                log out
              </Button>}
-          {!address  && <ConnectWallet network={network}/>}
+            <ConnectButton />
           </Box>
         </Toolbar>
       </Container>
