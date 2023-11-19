@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/session-wallet/static/css/main.bfa66662.css",
-    "main.js": "/session-wallet/static/js/main.6b5063d2.js",
+    "main.js": "/session-wallet/static/js/main.14b36faa.js",
     "static/js/94.545753d8.chunk.js": "/session-wallet/static/js/94.545753d8.chunk.js",
     "static/js/914.8bed1235.chunk.js": "/session-wallet/static/js/914.8bed1235.chunk.js",
     "static/js/333.2be71f59.chunk.js": "/session-wallet/static/js/333.2be71f59.chunk.js",
@@ -52,7 +52,7 @@
     "static/js/419.f2bc66c3.chunk.js": "/session-wallet/static/js/419.f2bc66c3.chunk.js",
     "index.html": "/session-wallet/index.html",
     "main.bfa66662.css.map": "/session-wallet/static/css/main.bfa66662.css.map",
-    "main.6b5063d2.js.map": "/session-wallet/static/js/main.6b5063d2.js.map",
+    "main.14b36faa.js.map": "/session-wallet/static/js/main.14b36faa.js.map",
     "94.545753d8.chunk.js.map": "/session-wallet/static/js/94.545753d8.chunk.js.map",
     "914.8bed1235.chunk.js.map": "/session-wallet/static/js/914.8bed1235.chunk.js.map",
     "333.2be71f59.chunk.js.map": "/session-wallet/static/js/333.2be71f59.chunk.js.map",
@@ -103,6 +103,6 @@
   },
   "entrypoints": [
     "static/css/main.bfa66662.css",
-    "static/js/main.6b5063d2.js"
+    "static/js/main.14b36faa.js"
   ]
 }
