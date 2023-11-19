@@ -9,7 +9,7 @@ contract SessionPlugin is BasePluginWithEventMetadata, Session {
         BasePluginWithEventMetadata(
             PluginMetadata({
                 name: "Session Plugin",
-                version: "0.0.2",
+                version: "0.1.1",
                 requiresRootAccess: false,
                 iconUrl: "",
                 appUrl: "https://meisamtaher.github.io/session-wallet"

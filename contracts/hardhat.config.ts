@@ -82,7 +82,7 @@ const config: HardhatUserConfig = {
     },
     scroll_sepolia: {
       ...sharedNetworkConfig,
-      url: `https://rpc.ankr.com/scroll_sepolia_testnet`,
+      url: `https://alpha-rpc.scroll.io/l2`,
     },
     linea_test:{
       ...sharedNetworkConfig,
