@@ -52,8 +52,8 @@ contract Session {
         require(sessions[address(_safeWallet)][msg.sender].active,"No session");  
         require(sessions[address(_safeWallet)][msg.sender].activeUntilBlock > block.timestamp ,"Session Expired");
         //////// check contracts and function signatures
-        require(sessions[address(_safeWallet)][msg.sender].sessiontType != SessionType.Contract, "Permission denied to this contract");
-        require(sessions[address(_safeWallet)][msg.sender].sessiontType != SessionType.ContractFunction, "Permission denied to this function");
+        require(sessions[address(_safeWallet)][msg.sender].sessiontType != SessionType.Contract, "Permission denied to this contract"); /// add check for contract address from call data 
+        require(sessions[address(_safeWallet)][msg.sender].sessiontType != SessionType.ContractFunction, "Permission denied to this function"); /// add check for function signature from call data 
         _manager.executeTransaction(_safeWallet, safeTx);
         // emit TransactionExecuted(msg.sender, _operation, to, )
     }
